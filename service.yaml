@@ -1,0 +1,23 @@
+---
+# Source: minio/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: minio
+  namespace: "rdt-uat"
+  labels:
+    app: minio
+    chart: minio-3.4.7
+    release: RELEASE-NAME
+    heritage: Helm
+    monitoring: "true"
+spec:
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 9000
+      protocol: TCP
+      targetPort: 9000
+  selector:
+    app: minio
+    release: RELEASE-NAME
